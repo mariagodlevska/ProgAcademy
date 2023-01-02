@@ -1,11 +1,27 @@
-# 1. Створіть клас для опису товару. У якості атрибутів товару можете використовувати значення ціни товару,
-# опису товару, габарити товару. Створіть пару екземплярів вашого класу та протестуйте їхню роботу.
+# 1. Модифікуйте Перше домашнє завдання так, щоб при спробі встановити від'ємну або нульову
+# вартість товару викликалася виняткова ситуація (тип виняткової ситуації треба самостійно реалізувати).
+
+# class that describes the shop items
+
+class NegativePriceError(Exception):
+    def __init__(self, price, fruit):
+        self.price = price
+        self.fruit = fruit
+
+    def __str__(self):
+        return f'Price ({self.price}) of {self.fruit} is negative. Please check the price.'
+
 
 class ShopItems:
     def __init__(self, fruit: str, price: float, description: str):
+        if price < 0:
+            raise NegativePriceError(price, fruit)
+
         self.price = price
         self.description = description
         self.fruit = fruit
+
+
 
     def __str__(self):
         return f'{self.fruit}\nkind: {self.description}\nprice: {self.price}'
@@ -13,10 +29,9 @@ class ShopItems:
 
 apple = ShopItems('apple', 40, 'red')
 orange = ShopItems('orange', 80, 'Brazil')
-banana = ShopItems('banana', 60, 'Thailand')
+banana = ShopItems('banana', -60, 'Thailand')
 
-# 2. Створіть клас "Покупець". У якості атрибутів можна використовувати прізвище,
-# ім'я, по батькові, мобільний телефон тощо.
+# class that describes the customers
 
 
 class Customer:
@@ -33,10 +48,7 @@ customer1 = Customer('Petro', 'Poroshenko', 380501234567)
 customer2 = Customer('Volodymyr', 'Zelenskiy', 380675678912)
 customer3 = Customer('Victor', 'Yushchenko', 380985673456)
 
-# 3. Створіть клас "Замовлення". Замовлення може містити декілька товарів певної кількості.
-# Замовлення має містити дані про користувача, який його здійснив.
-# Реалізуйте метод обчислення сумарної вартості замовлення.
-# Визначте метод str() для коректного виведення інформації про це замовлення.
+# class that describes the orders in cart (with a number of products and a customer)
 
 
 class Order:
@@ -64,9 +76,16 @@ class Order:
             m += f'{i} x {q}kg = {i.price * q} ₴\n'
         return m
 
+# possible carts
 
-order = Order(customer3)
-order.add_to_cart(apple, 2)
-order.add_to_cart(banana, 1)
+try:
+    order = Order(customer3)
+    order.add_to_cart(apple, 2)
+    order.add_to_cart(banana, 1)
+    print(order)
 
-print(order)
+except Exception as error:
+    print(error)
+
+
+
