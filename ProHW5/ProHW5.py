@@ -1,8 +1,5 @@
 # створити програму роботи з раціональними дробами зі всіма діями з ними
 
-import math
-
-
 class VulgarFractions:
     def __init__(self, a: int, b: int):
         if not b:
@@ -17,7 +14,7 @@ class VulgarFractions:
 
         :return: correct fraction sign
         """
-        if self.a * self.b < 0:
+        if self.a * self.b < 0 or self.a < 0 or self.b < 0:
             return abs(self.a) * -1
         else:
             return self.a
@@ -28,6 +25,9 @@ class VulgarFractions:
         :param other:
         :return: sum of two fractions
         """
+        if abs(self.a//self.b) == abs(other.a//other.b):
+            return f'{(self.a * other.a)//(self.b * other.b)}'
+
         common_d = abs(self.b) * abs(other.b)
         numerator1 = self.minus_check() * (common_d // abs(self.b))
         numerator2 = other.minus_check() * (common_d // abs(other.b))
@@ -41,6 +41,9 @@ class VulgarFractions:
         :param other:
         :return: substitution of two fractions
         """
+        if abs(self.a//self.b) == abs(other.a//other.b):
+            return f'{(self.a * other.a)//(self.b * other.b)}'
+
         common_d = abs(self.b) * abs(other.b)
         numerator1 = self.minus_check() * (common_d // abs(self.b))
         numerator2 = other.minus_check() * (common_d // abs(other.b))
@@ -54,8 +57,12 @@ class VulgarFractions:
         :param other:
         :return: multiplication of two fractions
         """
+        if abs(self.a//self.b) == abs(other.a//other.b):
+            return f'{(self.a * other.a)//(self.b * other.b)}'
+
         common_d = abs(self.b) * abs(other.b)
-        numerator_f = self.minus_check() * abs(self.a) * other.minus_check() * abs(other.a)
+        # numerator_f = self.minus_check() * abs(self.a) * other.minus_check() * abs(other.a)
+        numerator_f = self.minus_check() * other.minus_check()
 
         return VulgarFractions(numerator_f, common_d)
 
@@ -65,66 +72,42 @@ class VulgarFractions:
         :param other:
         :return: true division of two fractions
         """
-        common_d = abs(self.b) * abs(other.a)
-        numerator_f = (self.minus_check() * abs(self.a)) * (other.minus_check() * abs(other.b))
+        if abs(self.a//self.b) == abs(other.a//other.b):
+            return f'{(self.a * other.a)//(self.b * other.b)}'
+
+        common_d = abs(self.b) * other.a
+        numerator_f = self.a * abs(other.b)
 
         return VulgarFractions(numerator_f, common_d)
 
-    def whole_number(self):
-        """
-
-        :return: whole number extracted from the fraction;
-                 fraction numerator;
-                 fraction denominator
-        """
+    def __str__(self):
         a = self.a
         b = self.b
 
         if (a * b) < 0:
-            minus = -1
+            minus = '-'
         else:
-            minus = 1
+            minus = ''
 
         if abs(a) > abs(b) and not (a % b):
-            return (minus * abs(a) // abs(b)), '', ''
+            return f'{minus}{abs(a) // abs(b)}'
 
         elif abs(a) > abs(b) and (a % b):
-            return (minus * abs(a) // abs(b)), (abs(a) - ((abs(a) // abs(b)) * abs(b))), abs(b)
+            return f'{minus}{abs(a) // abs(b)} {(abs(a) - ((abs(a) // abs(b)) * abs(b)))}/{abs(b)}'
 
         elif abs(a) < abs(b):
-            return '', (minus * abs(a)), abs(b)
-
-        if a == b:
-            return (minus * 1), 1, 1
+            return f'{minus}{abs(a)}/{abs(b)}'
 
         if b == 1:
-            return (minus * abs(a)), 1, 1
+            return f'{minus}{abs(a)}'
 
-    def __str__(self):
-        # a = abs(self.whole_number()[2] // math.gcd(self.whole_number()[1], self.whole_number()[2]))
-        # b = abs(self.whole_number()[2] // math.gcd(self.whole_number()[1], self.whole_number()[2]))
-        a=9
-        b=5
-        # if self.a * self.b < 0:
-        #     minus = -1
-        # else:
-        #     minus = 1
-        #
-        # if a > b and not a % b:
-        #     return f'{minus * a//b}'
-        # elif a > b and a % b:
-        #     return f'{minus * a // b}  {a - ((a // b) * b)}/{b}'
-        #
-        # if a == b:
-        #     return f'{minus * 1}'
-        #
-        # if b == 1:
-        #     return f'{minus * a}'
-        #
-        return f'{self.whole_number()[0]}{a}/{b}'
+        if a == b:
+            return f'{minus}1'
 
 
-m1 = VulgarFractions(-2, 4)
-m2 = VulgarFractions(3, 5)
+m1 = VulgarFractions(-5, 2)
+m2 = VulgarFractions(3, 6)
 
+print(f'{m1.a}/{m1.b} + {m2.a}/{m2.b}')
 print(m1-m2)
+
