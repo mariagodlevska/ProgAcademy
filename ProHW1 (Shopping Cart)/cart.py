@@ -24,7 +24,9 @@ class Order:
         return total
 
     def __str__(self):
-        m = ''
+        m = []
+        # while self.cart_item:
+        #     m.append(list1[i] * 2)
         for i, q in zip(self.cart_item, self.cart_item_quantity):
-            m += f'{i} x {q}kg = {i.price * q} ₴\n'
-        return m
+            m.append(f'{i} x {q}kg = {i.price * q} ₴')
+        return '\n'.join(m)

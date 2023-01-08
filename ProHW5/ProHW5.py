@@ -111,3 +111,4 @@ m2 = VulgarFractions(3, 6)
 print(f'{m1.a}/{m1.b} + {m2.a}/{m2.b}')
 print(m1-m2)
 
+

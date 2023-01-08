@@ -9,7 +9,7 @@ import cart
 
 apple = ShopItems.ShopItems('apple', 40, 'red')
 orange = ShopItems.ShopItems('orange', 80, 'Brazil')
-banana = ShopItems.ShopItems('banana', -60, 'Thailand')
+banana = ShopItems.ShopItems('banana', 60, 'Thailand')
 
 # test customers
 
