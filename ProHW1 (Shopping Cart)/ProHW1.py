@@ -23,7 +23,14 @@ try:
     order = cart.Order(customer3)
     order.add_to_cart(apple, 2)
     order.add_to_cart(banana, 1)
-    print(order)
+    print(order, '\n')
+    for i in order:
+        print(i, '\n')
+    print(order.cart_item[1])
 
 except Exception as error:
     print(error)
+
+
+
+

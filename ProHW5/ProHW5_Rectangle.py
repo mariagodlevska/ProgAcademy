@@ -26,6 +26,12 @@ class Rectangle:
     def __eq__(self, other):
         return self.area() == other.area
 
+    def __add__(self, other):
+        return self.area() + other.area()
+
+    def __mul__(self, other):
+        return self.area() * other
+
     def comparison(self, other):
         """
         comparison of self and other
@@ -37,12 +43,6 @@ class Rectangle:
             return f'{self.area()} < {other.area()}'
         elif self.area() == other.area():
             return f'{self.area()} = {other.area()}'
-
-    def __add__(self, other):
-        return self.area() + other.area()
-
-    def __mul__(self, other):
-        return self.area() * other
 
 
 a = Rectangle(2, 5)

@@ -9,6 +9,9 @@ class Group:
         self.student_number = student_number
         self.__students = []
 
+    def __iter__(self):
+        return
+
     def add_student(self, student):
         if not len(self.__students) < self.student_number:
             logging.error(errors.StudentNumberError(self.student_number))

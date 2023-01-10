@@ -9,8 +9,25 @@ class Order:
         self.customer = customer
         self.cart_item = []
         self.cart_item_quantity = []
+        self.iter = 0
 
-    def add_to_cart(self, product: ShopItems, quantity: float):
+    def __next__(self):
+        if self.iter >= len(self.cart_item):
+            raise StopIteration
+        else:
+            self.iter += 1
+            return self.cart_item[self.iter - 1]
+
+    def __iter__(self):
+        return self
+
+    def __getitem__(self, item):
+        if item is int:
+            return self.cart_item[item]
+        else:
+            raise TypeError
+
+    def add_to_cart(self, product: ShopItems, quantity=1):
         if product in self.cart_item:
             self.cart_item_quantity[self.cart_item.index(product)] += quantity
         else:
@@ -25,8 +42,6 @@ class Order:
 
     def __str__(self):
         m = []
-        # while self.cart_item:
-        #     m.append(list1[i] * 2)
         for i, q in zip(self.cart_item, self.cart_item_quantity):
             m.append(f'{i} x {q}kg = {i.price * q} ₴')
         return '\n'.join(m)

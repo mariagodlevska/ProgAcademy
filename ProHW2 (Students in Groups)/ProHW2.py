@@ -33,4 +33,7 @@ Math.add_student(student.Student('Victor9', 'Yushchenko'))
 
 print(Math)
 
+for i in group:
+
+
 logging.info('Finished')
