@@ -26,14 +26,14 @@ Math.add_student(student.Student('Volodymyr', '2Zelenskiy'))
 Math.add_student(student.Student('Victor', '2Yushchenko'))
 Math.add_student(student.Student('Petro3', 'Poroshenko'))
 Math.add_student(student.Student('Volodymyr4', 'Zelenskiy'))
-Math.add_student(student.Student('Victor7', 'Yushchenko'))
-Math.add_student(student.Student('Petro4', 'Poroshenko'))
-Math.add_student(student.Student('Volodymyr8', 'Zelenskiy'))
-Math.add_student(student.Student('Victor9', 'Yushchenko'))
+# Math.add_student(student.Student('Victor7', 'Yushchenko'))
+# Math.add_student(student.Student('Petro4', 'Poroshenko'))
+# Math.add_student(student.Student('Volodymyr8', 'Zelenskiy'))
+# Math.add_student(student.Student('Victor9', 'Yushchenko'))
 
-print(Math)
+# print(Math)
 
-for i in group:
-
+for i in Math:
+    print(i)
 
 logging.info('Finished')

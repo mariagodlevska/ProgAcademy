@@ -8,9 +8,23 @@ class Group:
         self.group_name = group_name
         self.student_number = student_number
         self.__students = []
+        self.iter = 0
+
+    def __next__(self):
+        if self.iter >= len(self.__students):
+            raise StopIteration
+        else:
+            self.iter += 1
+            return self.__students[self.iter - 1]
 
     def __iter__(self):
-        return
+        return self
+
+    def __getitem__(self, item):
+        if item is int:
+            return self.__students[item]
+        else:
+            raise TypeError
 
     def add_student(self, student):
         if not len(self.__students) < self.student_number:
