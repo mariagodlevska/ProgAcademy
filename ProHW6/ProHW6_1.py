@@ -96,4 +96,14 @@ print(d)
 # 4. Напишіть генераторний вираз для заповнення списку.
 # Список повинен бути заповнений кубами чисел від 2 до вказаної вами величини.
 
+def cubus(finish, start=2):
+    while start < finish:
+        yield start*start*start
+        start += 1
+
+
+for i in cubus(10):
+    print(i)
+
+
 
