@@ -18,13 +18,13 @@ class Rectangle:
         return self.h * self.w
 
     def __gt__(self, other):
-        return self.area() > other.area
+        return self.area() > other.area()
 
     def __lt__(self, other):
-        return self.area() < other.area
+        return self.area() < other.area()
 
     def __eq__(self, other):
-        return self.area() == other.area
+        return self.area() == other.area()
 
     def __add__(self, other):
         return self.area() + other.area()
@@ -32,21 +32,9 @@ class Rectangle:
     def __mul__(self, other):
         return self.area() * other
 
-    def comparison(self, other):
-        """
-        comparison of self and other
-        :return: >, < or =
-        """
-        if self.area() > other.area():
-            return f'{self.area()} > {other.area()}'
-        elif self.area() < other.area():
-            return f'{self.area()} < {other.area()}'
-        elif self.area() == other.area():
-            return f'{self.area()} = {other.area()}'
-
 
 a = Rectangle(2, 5)
 b = Rectangle(3, 5)
-print(Rectangle.comparison(a, b))
+print(a < b)
 print(a+b)
 print(a.__mul__(other=10))
