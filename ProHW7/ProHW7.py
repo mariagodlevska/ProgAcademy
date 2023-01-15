@@ -18,13 +18,13 @@ for i in geometric_prog(3, 100):
 # 2. Реалізуйте свій аналог генераторної функції range().
 
 
-def new_range(stop: int, start=1):
-    while start is not stop:
+def new_range(stop: int, start=1, step=1):
+    while start <= stop:
         yield start
-        start += 1
+        start += step
 
 
-for i in new_range(10, 2):
+for i in new_range(200, 2, 10):
     print(i)
 
 # 3. Напишіть функцію-генератор, яка повертатиме прості числа.
@@ -65,10 +65,10 @@ def prime_num1(finish=100, start=2):
             start += 1
 
 
-b = []
-for n in prime_num1(100):
-    b.append(n)
-print(b)
+# b = []
+# for n in prime_num1(100):
+#     b.append(n)
+# print(b)
 
 
 def prime_num2(finish=100, start=2):
@@ -96,14 +96,13 @@ print(d)
 # 4. Напишіть генераторний вираз для заповнення списку.
 # Список повинен бути заповнений кубами чисел від 2 до вказаної вами величини.
 
-def cubus(finish, start=2):
-    while start < finish:
-        yield start*start*start
-        start += 1
+def cubus(finish):
+    cubes = []
+    for start in range(2, finish+1):
+        yield start ** 3
+        cubes.append(start ** 3)
+    return cubes
 
 
 for i in cubus(10):
     print(i)
-
-
-
