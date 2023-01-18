@@ -40,19 +40,16 @@ for i in new_range(-200, 2, -10):
 
 # 3. Напишіть функцію-генератор, яка повертатиме прості числа.
 # Верхня межа діапазону повинна бути задана параметром цієї функції.
-import timeit
 
 
 def prime_numbers(finish=100, start=2):
-    num_list = [2]
 
     for start in range(start, finish):
-        for i in num_list:
+        for i in range(2, start):
             if not start % i:
                 break
         else:
             yield start
-            num_list.append(start)
 
 
 h = []
@@ -64,7 +61,6 @@ print(h)
 def prime_num1(finish=100, start=2):
     yield 1
     not_num_list = []
-    # num_list = list(range(1, finish))
     while start < finish:
         if start in not_num_list:
             start += 1
@@ -76,15 +72,14 @@ def prime_num1(finish=100, start=2):
             start += 1
 
 
-# b = []
-# for n in prime_num1(100):
-#     b.append(n)
-# print(b)
+b = []
+for n in prime_num1(100):
+    b.append(n)
+print(b)
 
 
 def prime_num2(finish=100, start=2):
     yield 1
-    not_num_list = []
     num_list = list(range(1, finish))
     while start < finish:
         if start not in num_list:
