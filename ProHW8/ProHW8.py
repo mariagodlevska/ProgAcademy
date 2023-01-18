@@ -14,8 +14,8 @@ def genfunc(start: int, stop: int, userfunc):
         start += 1
 
 
-# for i in genfunc(1, 10, userfunc):
-#     print(i)
+for i in genfunc(1, 10, userfunc):
+    print(i)
 
 
 # 2. Використовуючи замикання, реалізуйте такий прийом програмування як Мемоізація
@@ -40,19 +40,21 @@ def not_rec_fib(n):
     num = [0, 1]
 
     def cache(n):
-        # if n <= 1:
-        #     return n
-        # else:
-        num[0] = num[1]
-        num[1] = num[0] + num[1]
+        if n <= len(num):
+            return n
 
-        return num[0]
+        for i in range(n):
+            num[-2] = num[-1]
+            num[-1] = num[-2] + num[-1]
+            num.append(num[-1])
+
+        return num[-1]
 
     return cache(n)
 
 
-# for i in range(1, 10):
-print(not_rec_fib(10))
+for i in range(1, 10):
+    print(not_rec_fib(i))
 
 # 3. Напишіть функцію, яка застосує до списку чисел довільну функцію користувача
 # і поверне суми елементів отриманого списку.
@@ -69,4 +71,4 @@ def listeditor(li: list):
     return s
 
 
-# print(int(listeditor([1, 2, 3, 4, 5])))
+print(int(listeditor([1, 2, 3, 4, 5])))
