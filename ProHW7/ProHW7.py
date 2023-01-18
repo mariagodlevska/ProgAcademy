@@ -19,13 +19,24 @@ for i in geometric_prog(3, 100):
 
 
 def new_range(stop: int, start=1, step=1):
-    while start <= stop:
+    if not isinstance(stop, int) or not isinstance(start, int) or not isinstance(step, int):
+        raise TypeError()
+
+    if not step:
+        raise ValueError
+    if step < 0 and stop > start:
+        return
+    if step > 0 and stop < start:
+        return
+
+    while abs(start) < abs(stop):
         yield start
         start += step
 
 
-for i in new_range(200, 2, 10):
+for i in new_range(-200, 2, -10):
     print(i)
+
 
 # 3. Напишіть функцію-генератор, яка повертатиме прості числа.
 # Верхня межа діапазону повинна бути задана параметром цієї функції.
