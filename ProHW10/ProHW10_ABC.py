@@ -10,11 +10,11 @@ import abc
 class Prime(abc.ABC):
 
     @abc.abstractmethod
-    def prime_numbers(self, n: int):
-        if n is not int:
+    def prime_numbers(self):
+        if not isinstance(self.n, int) or self.n <= 0:
             return False
-        for i in range(2, n):
-            if n % i:
+        for i in range(2, self.n):
+            if not self.n % i:
                 return False
 
         return True
@@ -27,11 +27,11 @@ class Smth1(Prime):
     def __init__(self, n):
         self.n = n
 
-    def prime_numbers(self, n: int):
-        if self.n is not int:
+    def prime_numbers(self):
+        if not isinstance(self.n, int) or self.n <= 0:
             return False
         for i in range(2, self.n):
-            if self.n % i:
+            if not self.n % i:
                 return False
 
         return True
@@ -47,10 +47,10 @@ class Smth2:
         self.n = n
 
     def prime_numbers(self):
-        if self.n is not int:
+        if not isinstance(self.n, int) or self.n <= 0:
             return False
         for i in range(2, self.n):
-            if self.n % i:
+            if not self.n % i:
                 return False
 
         return True
@@ -63,6 +63,6 @@ m = Smth2(7)
 # 4) Проверьте работоспособность проекта.　
 
 print(isinstance(m, Prime))
-print(Smth1(9))
-print(Smth2.prime_numbers(11))
+print(Smth1(5).prime_numbers())
+print(Smth2(10).prime_numbers())
 
