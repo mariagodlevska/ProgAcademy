@@ -74,3 +74,39 @@ print(Hello('Bob'))
 # 4) Создайте декоратор с параметрами для проведения хронометража работы той или иной функции.
 # Параметрами должны выступать то, сколько раз нужно запустить декорируемую функцию и
 # в какой файл сохранить результаты хронометража. Цель - провести хронометраж декорируемой функции.
+
+import time
+
+
+def timecount(number=1, filename='timecount.txt'):
+    def timecountdec(func):
+        def timecountinn(*args, **kwargs):
+            start = time.time()
+            end = time.time()
+            for i in range(number):
+                result = func(*args, **kwargs)
+            with open(filename, 'w') as file:
+                file.write(f'Start:{start}\nStop:{end}\nTime running:{end-start}\n\n')
+            return result
+        return timecountinn
+
+    return timecountdec
+
+
+class Prime:
+
+    def __init__(self, n):
+        self.n = n
+
+    @timecount(100000000)
+    def prime_numbers(self):
+        if not isinstance(self.n, int) or self.n <= 0:
+            return False
+        for i in range(2, self.n):
+            if not self.n % i:
+                return False
+
+        return True
+
+
+print(Prime(5).prime_numbers())
