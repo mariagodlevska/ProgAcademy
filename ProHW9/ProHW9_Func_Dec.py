@@ -51,8 +51,25 @@ print(listoffunc)
 # Создайте такой декоратор для этого метода, чтобы полученная строка сохранялась в текстовый файл,
 # имя которого совпадает с именем класса, метод которого вы декорировали.
 
+def dec(func):
+    def dec1(*args):
+        name = f'{func.__qualname__}.txt'
+        smth = func(*args)
+        with open(name, 'a') as file:
+            file.write(f'{smth}\n')
+        return smth
+    return dec1
 
+@dec
+class Hello:
 
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return f'Hello, {self.name}'
+
+print(Hello('Bob'))
 
 # 4) Создайте декоратор с параметрами для проведения хронометража работы той или иной функции.
 # Параметрами должны выступать то, сколько раз нужно запустить декорируемую функцию и
