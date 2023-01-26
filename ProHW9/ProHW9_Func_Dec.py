@@ -27,6 +27,24 @@ print(userfunc.count)
 
 # 2) Создайте декоратор, который зарегистрирует декорируемую функцию в списке функций, для обработки последовательности.
 
+listoffunc = []
+
+def registrator(func):
+    listoffunc.append(func)
+    return func
+
+@registrator
+def userfunc3(n):
+    return n*10
+
+@registrator
+def userfunc4(n):
+    return n*30
+
+
+print(userfunc3(2))
+print(userfunc4(2))
+print(listoffunc)
 
 
 # 3) Предположим, в классе определен метод __str__, который возвращает строку на основании класса.
