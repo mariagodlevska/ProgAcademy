@@ -9,13 +9,7 @@ class Prime(abc.ABC):
 
     @abc.abstractmethod
     def prime_numbers(self):
-        if not isinstance(self.n, int) or self.n <= 0:
-            return False
-        for i in range(2, self.n):
-            if not self.n % i:
-                return False
-
-        return True
+        ...
 
 
 # 2) Создайте класс его наследующий.
