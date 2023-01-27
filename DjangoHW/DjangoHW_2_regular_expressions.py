@@ -16,7 +16,7 @@ import re
 
 bankcard = '1234-5678-9012-3458'
 pattern_sub = r'\D+'
-pattern_search = r'\d{16}'
+pattern_search = r'^\d{16}$'
 replace = ''
 
 clean_bankcard = re.sub(pattern_sub, replace, bankcard)
